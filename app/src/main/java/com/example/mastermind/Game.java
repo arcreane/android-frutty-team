@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class Game extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnTouchListener{
     String choice1 = "", choice2 = "", choice3 = "", choice4 = "";
+    String[] user_input = {choice1, choice2, choice3, choice4};
 
     // list of available fruit
     Fruit Banana = new Fruit("Banana", false, true, R.drawable.banana);
@@ -36,7 +37,6 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        String[] user_input = {choice1, choice2, choice3, choice4};
         Integer[] test_user = {2, 2, 2, 2};
         check_if_is_won(test_user);
 
@@ -58,14 +58,12 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         spinner2.setAdapter(adapter);
         spinner2.setOnItemSelectedListener(this);
 
-
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner3.setAdapter(adapter);
         spinner3.setOnItemSelectedListener(this);
-
 
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
         // Specify the layout to use when the list of choices appears
@@ -74,8 +72,15 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         spinner4.setAdapter(adapter);
         spinner4.setOnItemSelectedListener(this);
 
-        Button button = findViewById(R.id.button2);
-        button.setOnTouchListener();
+
+        Button submit_button = findViewById(R.id.submit_user_input);
+        submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_attempt_checker(generate_answer(), user_input);
+            }
+        });
+
     }
 
     public Fruit[] generate_answer() {
@@ -164,16 +169,16 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         String text = parent.getItemAtPosition(position).toString();
         switch (parent.getId()) {
             case R.id.spinner1:
-                choice1 = text;
+                user_input[0] = text;
                 break;
             case R.id.spinner2:
-                choice2 = text;
+                user_input[1] = text;
                 break;
             case R.id.spinner3:
-                choice3 = text;
+                user_input[2] = text;
                 break;
             case R.id.spinner4:
-                choice4 = text;
+                user_input[3] = text;
                 break;
         }
     }
