@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="spinner_choice">100dp</dimen>
+    <dimen name="button_user_choice">100dp</dimen>
     <dimen name="normal_width">150dp</dimen>
 </resources>

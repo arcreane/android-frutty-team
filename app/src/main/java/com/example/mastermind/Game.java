@@ -3,6 +3,8 @@ package com.example.mastermind;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,12 +25,44 @@ public class Game extends AppCompatActivity {
     Fruit[] Fruits = {Banana, Kiwi, Strawberry, Raspberry, Grapes, Orange, Lemon, Plum};
     Fruit[] generated_answer = generate_answer();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         String[] test = {"Lemon", "Strawberry", "Orange", "Raspberry"};
-        user_attempt_checker(generate_answer(), test);
+        Integer[] test_user = {2, 2, 2, 2};
+        check_if_is_won(test_user);
+
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.fruits_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner1.setAdapter(adapter);
+
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner2.setAdapter(adapter);
+
+
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner3.setAdapter(adapter);
+
+
+        Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner4.setAdapter(adapter);
     }
 
     public Fruit[] generate_answer() {
@@ -74,7 +108,7 @@ public class Game extends AppCompatActivity {
             for (int j = 0; j < p_generated_answer.length; j++) {
                 if (p_user_input[i].equals(p_generated_answer[j].getName())) {
                     if (i == j) {
-                        // sil le fruit est présent et bien placé on met 2 dans un tableau
+                        // si le fruit est présent et bien placé on met 2 dans un tableau
                         checked_result = 2;
                     } else {
                         // si le fruit est présent on met 1 dans un tableau
@@ -87,6 +121,28 @@ public class Game extends AppCompatActivity {
         // on fait un sort() descendant sur le tableau
         Arrays.sort(result, Collections.reverseOrder());
         // on retourne le tableau ex: [2,1,0,0]
+        return result;
+    }
+
+    public String check_if_is_won(Integer[] user_attempt) {
+        // on vérifie le tableau
+        String result = "Je ne sais pas";
+        Integer[] won = {2, 2, 2, 2};
+        int available_attempt = 10;
+        // si gagné => menu gagné
+        if (Arrays.equals(user_attempt, won)) {
+            result = "Gagné";
+        }
+        // sinon
+        else {
+            if (available_attempt > 0) {
+                // si reste des essais => on refait une proposition
+                result = "Essaie encore";
+            } else {
+                // sinon perdu
+                result = "Perdu";
+            }
+        }
         return result;
     }
 }

@@ -6,9 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".Game">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game"/>
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="@dimen/spinner_choice"
+                android:layout_height="@dimen/spinner_choice"
+                android:layout_weight="1"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="@dimen/spinner_choice"
+                android:layout_height="@dimen/spinner_choice"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="@dimen/spinner_choice"
+                android:layout_height="@dimen/spinner_choice"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinner4"
+                android:layout_width="@dimen/spinner_choice"
+                android:layout_height="@dimen/spinner_choice"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </LinearLayout>
+
 </RelativeLayout>

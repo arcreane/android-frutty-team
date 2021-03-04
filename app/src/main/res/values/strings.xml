@@ -4,4 +4,14 @@
     <string name="score">High Score</string>
     <string name="helper">Tutorial</string>
     <string name="game">Play</string>
+    <string-array name="fruits_array">
+        <item>Banana</item>
+        <item>Grap</item>
+        <item>Kiwi</item>
+        <item>Lemon</item>
+        <item>Orange</item>
+        <item>Plum</item>
+        <item>Raspberry</item>
+        <item>Strawberry</item>
+    </string-array>
 </resources>
