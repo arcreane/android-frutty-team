@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mastermind</string>
+    <string name="splash">Splash</string>
+    <string name="score">High Score</string>
+    <string name="helper">Tutorial</string>
+    <string name="game">Play</string>
+</resources>
