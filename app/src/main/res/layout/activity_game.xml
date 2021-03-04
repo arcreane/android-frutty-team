@@ -51,10 +51,10 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/submit_user_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/submit" />
     </LinearLayout>
 
 </RelativeLayout>

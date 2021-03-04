@@ -5,6 +5,7 @@
     <string name="helper">Tutorial</string>
     <string name="game">Play</string>
     <string name="testTextView">TextView</string>
+    <string name="submit">Submit</string>
     <string-array name="fruits_array">
         <item>Banana</item>
         <item>Grap</item>
