@@ -3,16 +3,18 @@ package com.example.mastermind;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class Game extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Game extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnTouchListener{
     String choice1 = "", choice2 = "", choice3 = "", choice4 = "";
 
     // list of available fruit
@@ -71,6 +73,9 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         // Apply the adapter to the spinner
         spinner4.setAdapter(adapter);
         spinner4.setOnItemSelectedListener(this);
+
+        Button button = findViewById(R.id.button2);
+        button.setOnTouchListener();
     }
 
     public Fruit[] generate_answer() {
@@ -176,5 +181,10 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
     }
 }
