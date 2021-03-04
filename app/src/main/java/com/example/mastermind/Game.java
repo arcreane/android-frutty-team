@@ -3,14 +3,19 @@ package com.example.mastermind;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class Game extends AppCompatActivity {
+public class Game extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    String choice1 = "", choice2 = "", choice3 = "", choice4 = "";
+
     // list of available fruit
     Fruit Banana = new Fruit("Banana", false, true, "url");
     Fruit Kiwi = new Fruit("Kiwi", false, true, "url");
@@ -30,7 +35,7 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        String[] test = {"Lemon", "Strawberry", "Orange", "Raspberry"};
+        String[] user_input = {choice1, choice2, choice3, choice4};
         Integer[] test_user = {2, 2, 2, 2};
         check_if_is_won(test_user);
 
@@ -42,6 +47,7 @@ public class Game extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(this);
 
 
         Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
@@ -49,6 +55,7 @@ public class Game extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter);
+        spinner2.setOnItemSelectedListener(this);
 
 
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
@@ -56,6 +63,7 @@ public class Game extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner3.setAdapter(adapter);
+        spinner3.setOnItemSelectedListener(this);
 
 
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
@@ -63,6 +71,7 @@ public class Game extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner4.setAdapter(adapter);
+        spinner4.setOnItemSelectedListener(this);
     }
 
     public Fruit[] generate_answer() {
@@ -144,5 +153,29 @@ public class Game extends AppCompatActivity {
             }
         }
         return result;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        switch (parent.getId()) {
+            case R.id.spinner1:
+                choice1 = text;
+                break;
+            case R.id.spinner2:
+                choice2 = text;
+                break;
+            case R.id.spinner3:
+                choice3 = text;
+                break;
+            case R.id.spinner4:
+                choice4 = text;
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
