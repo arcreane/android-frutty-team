@@ -5,14 +5,14 @@ public class Fruit {
     private final String name;
     private final Boolean seed;
     private final Boolean pealable;
-    private final String url;
+    private final int id;
 
     // Constructor
-    public Fruit(String p_name, Boolean p_seed, Boolean p_pealable, String p_url) {
+    public Fruit(String p_name, Boolean p_seed, Boolean p_pealable, int p_id) {
         name = p_name;
         seed = p_seed;
         pealable = p_pealable;
-        url = p_url;
+        id = p_id;
     }
 
     // Getter
@@ -28,7 +28,7 @@ public class Fruit {
         return pealable;
     }
 
-    public String getUrl() {
-        return url;
+    public int getDrawableId() {
+        return id;
     }
 }
