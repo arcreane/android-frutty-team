@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,14 +16,14 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
     String choice1 = "", choice2 = "", choice3 = "", choice4 = "";
 
     // list of available fruit
-    Fruit Banana = new Fruit("Banana", false, true, "url");
-    Fruit Kiwi = new Fruit("Kiwi", false, true, "url");
-    Fruit Strawberry = new Fruit("Strawberry", false, false, "url");
-    Fruit Raspberry = new Fruit("Raspberry", false, false, "url");
-    Fruit Grapes = new Fruit("Grapes", true, false, "url");
-    Fruit Orange = new Fruit("Orange", false, true, "url");
-    Fruit Lemon = new Fruit("Lemon", false, true, "url");
-    Fruit Plum = new Fruit("Plum", true, false, "url");
+    Fruit Banana = new Fruit("Banana", false, true, R.drawable.banana);
+    Fruit Kiwi = new Fruit("Kiwi", false, true, R.drawable.kiwi);
+    Fruit Strawberry = new Fruit("Strawberry", false, false, R.drawable.strawberry);
+    Fruit Raspberry = new Fruit("Raspberry", false, false, R.drawable.raspberry);
+    Fruit Grapes = new Fruit("Grapes", true, false, R.drawable.grapes);
+    Fruit Orange = new Fruit("Orange", false, true, R.drawable.orange);
+    Fruit Lemon = new Fruit("Lemon", false, true, R.drawable.lemon);
+    Fruit Plum = new Fruit("Plum", true, false, R.drawable.plum);
 
     // Fruit basket = Fruits
     Fruit[] Fruits = {Banana, Kiwi, Strawberry, Raspberry, Grapes, Orange, Lemon, Plum};
