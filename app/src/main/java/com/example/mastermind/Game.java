@@ -57,12 +57,14 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         fruits.put(lemon.getName(),lemon);
         fruits.put(plum.getName(),plum);
         generated_answer = generate_answer();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Integer[] test_user = {2, 2, 2, 2};
         check_if_is_won(test_user);
 
         RecyclerView rvFruits = findViewById(R.id.rvFruits);
+        mLayoutManager = new LinearLayoutManager(this);
         rvFruits.setLayoutManager(mLayoutManager);
 
         FruitAdapter fruitAdapter = new FruitAdapter(this, history);
@@ -142,13 +144,12 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     }
 
-    private ArrayAdapter<CharSequence> defineSpinner(Spinner spinner, ArrayAdapter<CharSequence> adapter) {
+    private void defineSpinner(Spinner spinner, ArrayAdapter<CharSequence> adapter) {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        return adapter;
     }
 
     public Fruit[] generate_answer() {
@@ -162,7 +163,8 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
 
             for (int i = 0; i < result.length; i++) {
                 if (result[i] != null) {
-                    if (result[i].getName().equals(fruits.get(proposition).getName())) {
+                    String s = new ArrayList<>(fruits.keySet()).get(proposition);
+                    if (result[i].getName().equals(new ArrayList<>(fruits.keySet()).get(proposition))) {
                         isValid = false;
                         break;
                     }
@@ -170,7 +172,7 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
             }
 
             if (isValid) {
-                result[inserted_fruit] = fruits.get(proposition);
+                result[inserted_fruit] = fruits.get(new ArrayList<>(fruits.keySet()).get(proposition));
                 inserted_fruit++;
             }
         }

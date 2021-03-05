@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
@@ -41,16 +42,16 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(@NonNull FruitAdapter.ViewHolder holder, int position) {
-
+        Integer[] temp = m_fruits.get(position).second;
         // Set item views based on your views and data model
         TextView hint1 = holder.hint1;
-        hint1.setText(m_fruits.get(position).second[0]);
+        hint1.setText(String.format(Locale.getDefault(),"%d",m_fruits.get(position).second[0]));
         TextView hint2 = holder.hint2;
-        hint2.setText(m_fruits.get(position).second[1]);
+        hint2.setText(String.format(Locale.getDefault(),"%d",m_fruits.get(position).second[1]));
         TextView hint3 = holder.hint3;
-        hint3.setText(m_fruits.get(position).second[2]);
+        hint3.setText(String.format(Locale.getDefault(),"%d",m_fruits.get(position).second[2]));
         TextView hint4 = holder.hint4;
-        hint4.setText(m_fruits.get(position).second[3]);
+        hint4.setText(String.format(Locale.getDefault(),"%d",m_fruits.get(position).second[3]));
 
         ImageButton img1 = holder.img1;
         img1.setImageResource(m_fruits.get(position).first[0].getDrawableId());
@@ -64,7 +65,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return m_fruits.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -79,14 +80,14 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
 
         public ViewHolder(View itemView){
             super(itemView);
-            TextView hint1 = itemView.findViewById(R.id.TV1);
-            TextView hint2 = itemView.findViewById(R.id.TV2);
-            TextView hint3 = itemView.findViewById(R.id.TV3);
-            TextView hint4 = itemView.findViewById(R.id.TV4);
-            ImageButton img1 = itemView.findViewById(R.id.f1);
-            ImageButton img2 = itemView.findViewById(R.id.f2);
-            ImageButton img3 = itemView.findViewById(R.id.f3);
-            ImageButton img4 = itemView.findViewById(R.id.f4);
+            hint1 = itemView.findViewById(R.id.TV1);
+            hint2 = itemView.findViewById(R.id.TV2);
+            hint3 = itemView.findViewById(R.id.TV3);
+             hint4 = itemView.findViewById(R.id.TV4);
+             img1 = itemView.findViewById(R.id.f1);
+             img2 = itemView.findViewById(R.id.f2);
+             img3 = itemView.findViewById(R.id.f3);
+             img4 = itemView.findViewById(R.id.f4);
             }
 
         }
