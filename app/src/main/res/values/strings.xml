@@ -6,9 +6,11 @@
     <string name="game">Play</string>
     <string name="testTextView">TextView</string>
     <string name="submit">Submit</string>
+    <string name="hint_peelable">Hint: Peelable</string>
+    <string name="hint_seeds">Hint: Seeds</string>
     <string-array name="fruits_array">
         <item>Banana</item>
-        <item>Grape</item>
+        <item>Grapes</item>
         <item>Kiwi</item>
         <item>Lemon</item>
         <item>Orange</item>

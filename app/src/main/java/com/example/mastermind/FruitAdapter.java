@@ -1,6 +1,7 @@
 package com.example.mastermind;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,39 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
     // Store a member variable for the contacts
-    // private List<Fruit> m_fruits;
-    // private List<Integer> m_hints;
-    private final Fruit m_fruit1;
-    private final Fruit m_fruit2;
-    private final Fruit m_fruit3;
-    private final Fruit m_fruit4;
-    private final Integer m_hint1;
-    private final Integer m_hint2;
-    private final Integer m_hint3;
-    private final Integer m_hint4;
+    private List<Pair<Fruit[],Integer[]>> m_fruits;
+    private List<Integer> m_hints;
 
-    // Pass in the contact array into the constructor
-    //public FruitAdapter(List<Fruit> fruits, List<Integer> hints) {
-    public FruitAdapter(Fruit fruit1, Fruit fruit2, Fruit fruit3, Fruit fruit4, Integer hint1, Integer hint2, Integer hint3, Integer hint4) {
-        // m_fruits = fruits;
-        // m_hints = hints;
-        m_fruit1 = fruit1;
-        m_fruit2 = fruit2;
-        m_fruit3 = fruit3;
-        m_fruit4 = fruit4;
-        m_hint1 = hint1;
-        m_hint2 = hint2;
-        m_hint3 = hint3;
-        m_hint4 = hint4;
+    public FruitAdapter(Context context, List<Pair<Fruit[],Integer[]>> fruits){
+        m_fruits = fruits;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FruitAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -56,26 +40,26 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FruitAdapter.ViewHolder holder, int position) {
 
         // Set item views based on your views and data model
         TextView hint1 = holder.hint1;
-        hint1.setText(m_hint1);
+        hint1.setText(m_fruits.get(position).second[0]);
         TextView hint2 = holder.hint2;
-        hint2.setText(m_hint2);
+        hint2.setText(m_fruits.get(position).second[1]);
         TextView hint3 = holder.hint3;
-        hint3.setText(m_hint3);
+        hint3.setText(m_fruits.get(position).second[2]);
         TextView hint4 = holder.hint4;
-        hint4.setText(m_hint4);
+        hint4.setText(m_fruits.get(position).second[3]);
 
         ImageButton img1 = holder.img1;
-        img1.setImageResource(m_fruit1.getDrawableId());
+        img1.setImageResource(m_fruits.get(position).first[0].getDrawableId());
         ImageButton img2 = holder.img2;
-        img2.setImageResource(m_fruit2.getDrawableId());
+        img2.setImageResource(m_fruits.get(position).first[1].getDrawableId());
         ImageButton img3 = holder.img3;
-        img3.setImageResource(m_fruit3.getDrawableId());
+        img3.setImageResource(m_fruits.get(position).first[2].getDrawableId());
         ImageButton img4 = holder.img4;
-        img4.setImageResource(m_fruit4.getDrawableId());
+        img4.setImageResource(m_fruits.get(position).first[3].getDrawableId());
     }
 
     @Override

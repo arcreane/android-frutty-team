@@ -5,107 +5,150 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Game extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnTouchListener{
     String choice1 = "", choice2 = "", choice3 = "", choice4 = "";
     String[] user_input = {choice1, choice2, choice3, choice4};
+    private List<Pair<Fruit[],Integer[]>> history = new ArrayList<>();
+    private RecyclerView.LayoutManager mLayoutManager;
 
     // list of available fruit
-    Fruit Banana = new Fruit("Banana", false, true, R.drawable.banana);
-    Fruit Kiwi = new Fruit("Kiwi", false, true, R.drawable.kiwi);
-    Fruit Strawberry = new Fruit("Strawberry", false, false, R.drawable.strawberry);
-    Fruit Raspberry = new Fruit("Raspberry", false, false, R.drawable.raspberry);
-    Fruit Grapes = new Fruit("Grapes", true, false, R.drawable.grapes);
-    Fruit Orange = new Fruit("Orange", false, true, R.drawable.orange);
-    Fruit Lemon = new Fruit("Lemon", false, true, R.drawable.lemon);
-    Fruit Plum = new Fruit("Plum", true, false, R.drawable.plum);
+    Fruit banana = new Fruit("Banana", false, true, R.drawable.banana);
+    Fruit kiwi = new Fruit("Kiwi", false, true, R.drawable.kiwi);
+    Fruit strawberry = new Fruit("Strawberry", false, false, R.drawable.strawberry);
+    Fruit raspberry = new Fruit("Raspberry", false, false, R.drawable.raspberry);
+    Fruit grapes = new Fruit("Grapes", true, false, R.drawable.grapes);
+    Fruit orange = new Fruit("Orange", false, true, R.drawable.orange);
+    Fruit lemon = new Fruit("Lemon", false, true, R.drawable.lemon);
+    Fruit plum = new Fruit("Plum", true, false, R.drawable.plum);
 
     // Fruit basket = Fruits
-    Fruit[] Fruits = {Banana, Kiwi, Strawberry, Raspberry, Grapes, Orange, Lemon, Plum};
-    Fruit[] generated_answer = generate_answer();
+    Map<String,Fruit> fruits = new HashMap<>();
+    //{Banana, Kiwi, Strawberry, Raspberry, Grapes, Orange, Lemon, Plum};
+    Fruit[] generated_answer;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fruits.put(banana.getName(),banana);
+        fruits.put(kiwi.getName(),kiwi);
+        fruits.put(strawberry.getName(),strawberry);
+        fruits.put(raspberry.getName(),raspberry);
+        fruits.put(grapes.getName(),grapes);
+        fruits.put(orange.getName(),orange);
+        fruits.put(lemon.getName(),lemon);
+        fruits.put(plum.getName(),plum);
+        generated_answer = generate_answer();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Integer[] test_user = {2, 2, 2, 2};
         check_if_is_won(test_user);
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        RecyclerView rvFruits = findViewById(R.id.rvFruits);
+        rvFruits.setLayoutManager(mLayoutManager);
+
+        FruitAdapter fruitAdapter = new FruitAdapter(this, history);
+        rvFruits.setAdapter(fruitAdapter);
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.fruits_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner1.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(this);
 
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        defineSpinner(spinner1,adapter);
 
         Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner2.setAdapter(adapter);
-        spinner2.setOnItemSelectedListener(this);
+        defineSpinner(spinner2,adapter);
 
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner3.setAdapter(adapter);
-        spinner3.setOnItemSelectedListener(this);
+        defineSpinner(spinner3,adapter);
 
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner4.setAdapter(adapter);
-        spinner4.setOnItemSelectedListener(this);
+        defineSpinner(spinner4,adapter);
 
+        Button peelable_button, seeds_button;
+        LinearLayout peelable_layout, seeds_layout;
+
+        peelable_button = findViewById(R.id.peelable);
+        seeds_button = findViewById(R.id.seeds);
+        peelable_layout = findViewById(R.id.peelableLL);
+        seeds_layout = findViewById(R.id.seedsLL);
+
+        peelable_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                peelable_layout.setVisibility(View.VISIBLE);
+                TextView TV1 = findViewById(R.id.peelable1);
+                TV1.setText(generated_answer[0].getPealable().toString());
+                TextView TV2 = findViewById(R.id.peelable2);
+                TV2.setText(generated_answer[1].getPealable().toString());
+                TextView TV3 = findViewById(R.id.peelable3);
+                TV3.setText(generated_answer[2].getPealable().toString());
+                TextView TV4 = findViewById(R.id.peelable4);
+                TV4.setText(generated_answer[3].getPealable().toString());
+            }
+        });
+
+        seeds_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                seeds_layout.setVisibility(View.VISIBLE);
+                TextView TV1 = findViewById(R.id.seeds1);
+                TV1.setText(generated_answer[0].getSeed().toString());
+                TextView TV2 = findViewById(R.id.seeds2);
+                TV2.setText(generated_answer[1].getSeed().toString());
+                TextView TV3 = findViewById(R.id.seeds3);
+                TV3.setText(generated_answer[2].getSeed().toString());
+                TextView TV4 = findViewById(R.id.seeds4);
+                TV4.setText(generated_answer[3].getSeed().toString());
+            }
+        });
 
         Button submit_button = findViewById(R.id.submit_user_input);
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer[] hints = user_attempt_checker(generate_answer(), user_input);
-                RecyclerView rvFruits = findViewById(R.id.rvFruits);
-                Fruit fruit1 = null;
-                Fruit fruit2 = null;
-                Fruit fruit3 = null;
-                Fruit fruit4 = null;
-                // Fruit fruit1 = Fruits[(Arrays.asList(Fruits)).indexOf(user_input[0])];
-                for (Fruit fruit:Fruits) {
-                    if(fruit.getName().equals(user_input[0])){
-                        fruit1 = fruit;
-                    }
-                    if(fruit.getName().equals(user_input[1])){
-                        fruit2 = fruit;
-                    }
-                    if(fruit.getName().equals(user_input[2])){
-                        fruit3 = fruit;
-                    }
-                    if(fruit.getName().equals(user_input[3])){
-                        fruit4 = fruit;
-                    }
+                Integer[] hints = user_attempt_checker(generated_answer, user_input);
+
+                Fruit[] fruitsArray = new Fruit[4];
+
+                for (int i=0; i<fruitsArray.length;i++) {
+                    fruitsArray[i] = fruits.get(user_input[i]);
                 }
-                FruitAdapter adapter = new FruitAdapter(fruit1,fruit2,fruit3,fruit4,hints[0],hints[1],hints[2],hints[3]);
-                rvFruits.setAdapter(adapter);
-                rvFruits.setLayoutManager(new LinearLayoutManager(Game.this));
+                history.add(new Pair<>(fruitsArray,hints));
+                fruitAdapter.notifyDataSetChanged();
             }
         });
 
+    }
+
+    private ArrayAdapter<CharSequence> defineSpinner(Spinner spinner, ArrayAdapter<CharSequence> adapter) {
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        return adapter;
     }
 
     public Fruit[] generate_answer() {
@@ -114,12 +157,12 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
 
         while (inserted_fruit != 4) {
             Random rnd = new Random();
-            int proposition = rnd.nextInt(Fruits.length);
+            int proposition = rnd.nextInt(fruits.size());
             boolean isValid = true;
 
             for (int i = 0; i < result.length; i++) {
                 if (result[i] != null) {
-                    if (result[i].getName().equals(Fruits[proposition].getName())) {
+                    if (result[i].getName().equals(fruits.get(proposition).getName())) {
                         isValid = false;
                         break;
                     }
@@ -127,7 +170,7 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
             }
 
             if (isValid) {
-                result[inserted_fruit] = Fruits[proposition];
+                result[inserted_fruit] = fruits.get(proposition);
                 inserted_fruit++;
             }
         }
