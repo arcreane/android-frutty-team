@@ -28,6 +28,8 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
     String[] user_input = {choice1, choice2, choice3, choice4};
     private List<Pair<Fruit[],Integer[]>> history = new ArrayList<>();
     private RecyclerView.LayoutManager mLayoutManager;
+    List<FruitItemChoice> fruitItemChoiceArrayList;
+    FruitSpinnerAdapter fruitSpinnerAdapter;
 
     // list of available fruit
     Fruit banana = new Fruit("Banana", false, true, R.drawable.banana);
@@ -86,8 +88,34 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
         defineSpinner(spinner4,adapter);
 
+
+        //Spinner Customise
+/*
+        fruitItemChoiceArrayList = fruitList();
+
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        fruitSpinnerAdapter = new FruitSpinnerAdapter(Game.this, R.layout.custom_spinner, fruitItemChoiceArrayList);
+        spinner1.setAdapter(fruitSpinnerAdapter);
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        fruitSpinnerAdapter = new FruitSpinnerAdapter(Game.this, R.layout.custom_spinner, fruitItemChoiceArrayList);
+        spinner2.setAdapter(fruitSpinnerAdapter);
+
+        Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
+        fruitSpinnerAdapter = new FruitSpinnerAdapter(Game.this, R.layout.custom_spinner, fruitItemChoiceArrayList);
+        spinner3.setAdapter(fruitSpinnerAdapter);
+
+        Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
+        fruitSpinnerAdapter = new FruitSpinnerAdapter(Game.this, R.layout.custom_spinner, fruitItemChoiceArrayList);
+        spinner4.setAdapter(fruitSpinnerAdapter);
+
+
+ */
+
+
         Button peelable_button, seeds_button;
         LinearLayout peelable_layout, seeds_layout;
+
 
         peelable_button = findViewById(R.id.peelable);
         seeds_button = findViewById(R.id.seeds);
@@ -261,5 +289,20 @@ public class Game extends AppCompatActivity implements AdapterView.OnItemSelecte
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return false;
+    }
+
+    // images for each fruit option
+    public List<FruitItemChoice> fruitList(){
+        List fruitList = new ArrayList<>();
+        fruitList.add(new FruitItemChoice("Orange", R.drawable.banana));
+        fruitList.add(new FruitItemChoice("Grapes", R.drawable.grapes));
+        fruitList.add(new FruitItemChoice("Lemon", R.drawable.lemon));
+        fruitList.add(new FruitItemChoice("Orange", R.drawable.orange));
+        fruitList.add(new FruitItemChoice("Plum", R.drawable.plum));
+        fruitList.add(new FruitItemChoice("Raspberry", R.drawable.raspberry));
+        fruitList.add(new FruitItemChoice("Strawberry", R.drawable.strawberry));
+        fruitList.add(new FruitItemChoice("Kiwi", R.drawable.kiwi));
+        return fruitList;
+
     }
 }
