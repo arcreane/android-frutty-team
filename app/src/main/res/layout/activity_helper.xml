@@ -6,9 +6,177 @@
     android:layout_height="match_parent"
     tools:context=".Helper">
 
+
+    <LinearLayout
+        android:id="@+id/layout12"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/raspberry" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/banana" />
+
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/orange" />
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/grapes" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/kiwi" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/TV1"
-        android:layout_width="wrap_content"
+        android:id="@+id/h1"
+        android:layout_below="@+id/layout12"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Helper" />
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:text="How to play" />
+
+
+    <TextView
+        android:layout_below="@+id/h1"
+        android:id="@+id/h3"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="30dp"
+        android:layout_centerInParent="true"
+        android:text="To Win: "/>
+
+
+
+    <TextView
+        android:layout_below="@+id/h3"
+        android:id="@+id/h4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:inputType="textImeMultiLine"
+        android:textSize="15dp"
+        android:text="Choose each fruit to"/>
+
+
+
+    <TextView
+        android:layout_below="@+id/h4"
+        android:id="@+id/h6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:inputType="textImeMultiLine"
+        android:textSize="15dp"
+        android:text="guess the original place of each fruit"/>
+
+
+    <TextView
+        android:layout_below="@+id/h6"
+        android:layout_marginTop="30dp"
+        android:id="@+id/h7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"
+        android:text="Note:"/>
+
+    <TextView
+        android:layout_below="@+id/h7"
+        android:id="@+id/h8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:textSize="15dp"
+        android:text="Player have 10 tries to find the right combination"/>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/raspberry"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/banana"
+            android:layout_gravity="center"/>
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/orange"
+            android:layout_gravity="center"/>
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/grapes"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/kiwi"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
